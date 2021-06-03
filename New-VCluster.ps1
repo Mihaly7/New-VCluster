@@ -1,7 +1,55 @@
 Function New-VCluster
+
     {
+      <#
+        .SYNOPSIS
+        Deploy a virtual cluster on Hyper-V
+
+        .DESCRIPTION
+        This script helps to deploy a defined number of Virtual Machines, with base image or blank os disk.
+        You could add defined number of data disks with custom size. Custom amount of Nics attached to the same existing switch.
+        Define number of CPU cores amount of Physical Memory.
+
+        .PARAMETER Nodes
+        Number of Cluster nodes.
+
+        .PARAMETER NodeName
+        Name of the VMs, numbers will be added to the end
+
+        .PARAMETER Cores
+        Number of CPU cores.
+
+        .PARAMETER Memory
+        Amount of Memory. Usage "4GB"
+
+        .PARAMETER Datadisks
+        Number of data disks.
+
+        .PARAMETER Disksize
+        Size of the disks. Usage "32GB"
+        
+        .PARAMETER NICS
+        Amount of NICS.
+
+        .PARAMETER SwitchName
+        Hyper-V switch where the NICS will be attached.
+
+        .PARAMETER BaseImage
+        Path of BaseImage (vhdx) which will be copied as OS disk
+
+        
+        .PARAMETER ISOLocation
+        Path to the ISO which will be mounted during VM creation.
+
+
+
+        .EXAMPLE
+        PS> New-VCluster -Nodes 2 -NodeName OSAZHCI -Cores 2 -Memory 4GB -Baseimage D:\Scripts\AzSHCI20H2_G2.vhdx -Nics 4 -Switchname Private -DataDisks 4 -DataDiskSize 32GB
+
+    #>
         Param 
         (
+         [Parameter(Mandatory=$true)]
             [int]$Nodes,
             [string]$NodeName,
             [int]$Cores,
@@ -9,10 +57,12 @@ Function New-VCluster
             [int]$DataDisks,
             $DataDiskSize,
             [string]$Nics,
-            [string]$Baseimage,
             $Switchname,
+        [Parameter(Mandatory=$false)]
+            $Baseimage,
             $ISOlocation
         )
+
 
 Function Prepare-OSdisk
 {
