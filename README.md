@@ -10,4 +10,4 @@ Quick and Dirty Virtual Cluster creation on Hyper-V
         Define number of CPU cores amount of Physical Memory.
 
        .EXAMPLE
-        PS> New-VCluster -Nodes 2 -NodeName OSAZHCI -Cores 2 -Memory 4GB -Baseimage D:\Scripts\AzSHCI20H2_G2.vhdx -Nics 4 -Switchname Private -DataDisks 4 -DataDiskSize 32GB
+        PS> New-VCluster -Nodes 2 -NodeName TestCluster -Cores 2 -Memory 4GB -Baseimage D:\Scripts\AzSHCI20H2_G2.vhdx -Nics 4 -Switchname Private -DataDisks 4 -DataDiskSize 32GB
