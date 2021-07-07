@@ -1,4 +1,4 @@
-Function New-VCluster
+﻿Function New-VCluster
 
     {
       <#
