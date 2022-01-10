@@ -87,7 +87,7 @@ $vmname = $Nodename+$j
     {
     
     $Vhdname = $vmname+"data"+$d+".vhdx"
-    New-VHD -Path $vhdpath"\"$Vhdname -SizeBytes $datadisksize -Fixed -verbose
+    New-VHD -Path $vhdpath"\"$Vhdname -SizeBytes $datadisksize -Dynamic -verbose
     
     }
 
