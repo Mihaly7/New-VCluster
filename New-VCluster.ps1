@@ -105,7 +105,7 @@ $vmname = $Nodename+$j
             New-VM -name $VMname -Generation 2 -MemoryStartupBytes $Memory -NewVHDPath $OsDrive -NewVHDSizeBytes 64GB
         }
         
-    
+    Get-VMNetworkAdapter $VMname | Connect-VMNetworkAdapter -SwitchName $Switchname
     Get-VM $VMname | Set-VM -ProcessorCount $Cores
     
     $Disks = Get-ChildItem -Path ((get-vmhost).VirtualHardDiskPath).ToString() -Filter $vmname"data*"
@@ -126,6 +126,7 @@ $vmname = $Nodename+$j
     
     
     Set-VMProcessor -VMName $VMname -ExposeVirtualizationExtensions $true -verbose
+    Get-VMNetworkAdapter -VMName $vmname | Set-VMNetworkAdapter -MacAddressSpoofing on
     }
     }
 }
